@@ -10,3 +10,18 @@ jobs:
     steps:
       - name: Log Event Data
         run: echo '${{ toJson(github.event) }}'
+      - name: Checkout Code from Commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{github.event.pull_request.head.sha}}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+      # Step 3: Install MBT and dependencies
+      - name: Install MBT and dependencies
+        run: |
+          npm install -g mbt
+          npm install --production
+          npm install -g rimraf
