@@ -8,7 +8,7 @@ on:
       branch:
         description: branch to run the workflow on
         required: true
-        default: 'main'
+        default: 'master'
         type: string
 jobs:
   build-deploy-test:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha || 'main' }}
+          ref: ${{ github.event.pull_request.head.sha || 'master' }}
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
