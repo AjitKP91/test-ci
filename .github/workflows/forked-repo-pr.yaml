@@ -3,7 +3,13 @@ name: CloudFoundry - Build, Deploy and Test
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
-
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: branch to run the workflow on
+        required: true
+        default: 'main'
+        type: string
 jobs:
   build-deploy-test:
     runs-on: ubuntu-latest
